@@ -1,0 +1,433 @@
+uid: SMA_widget
+tags: []
+props:
+  parameters:
+    - context: item
+      label: Netzeinspeisung
+      name: netzeinspeisung
+      required: true
+      type: TEXT
+    - context: item
+      label: Gesamtverbrauch
+      name: gesamtverbrauch
+      required: true
+      type: TEXT
+    - context: item
+      label: PV Leistung
+      name: pv_leistung
+      required: true
+      type: TEXT
+    - context: item
+      label: Batterieleistung
+      name: batterieleistung
+      required: true
+      type: TEXT
+    - context: item
+      label: Batterie Ladezustand
+      name: batterylevel
+      required: true
+      type: TEXT
+    - description: Treshold for Pause
+      label: Treshold
+      name: prop_tres
+      required: true
+      type: INTEGER
+  parameterGroups: []
+
+# Global config
+timestamp: Oct 27, 2022, 7:49:34 PM
+component: f7-card
+config:
+  class:
+    - display-flex
+    - flex-direction-column
+    - align-items-center
+  style:
+    height: 450px
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: var(--f7-card-expandable-box-shadow)
+  title: Photovoltaik
+
+# All display items
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          --f7-theme-color: var(--f7-text-color)
+          display: flex
+          justify-content: space-between
+          padding: 0
+      slots:
+        default:
+          # Grid power icon + value
+          - component: f7-col
+            config:
+              style:
+                align-items: center
+                display: flex
+                flex-direction: row
+            slots:
+              default:
+                - component: f7-block
+                  config:
+                    style:
+                      align-items: center
+                      display: flex
+                      flex-direction: column
+                      height: 110px
+                      justify-content: center
+                      margin-top: 0
+                      width: 110px
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          height: 110px
+                          icon: sma_grid_2
+                      - component: Label
+                        config:
+                          style:
+                            color: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) > props.prop_tres) ? "red" : "green"'
+                            font-size: 20px
+                            font-weight: bold
+                            margin-top: -10px
+                            text-align: center
+                            width: 150px
+                          text: =items[props.netzeinspeisung].displayState
+                          visible: '=Math.abs(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0])) > props.prop_tres'
+
+          # Solar value + icon + animation + Energy consumption
+          - component: f7-col
+            config:
+              style:
+                align-items: center
+                display: flex
+                flex-direction: column
+                flex-grow: 1
+            slots:
+              default:
+                # Value + icon
+                - component: f7-block
+                  config:
+                    style:
+                      align-items: center
+                      display: flex
+                      flex-direction: column
+                      height: 110px
+                      justify-content: center
+                      margin-top: 0
+                      width: 110px
+                  slots:
+                    default:
+                      # Value
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: bold
+                            text-align: center
+                            width: 150px
+                          text: =items[props.pv_leistung].displayState
+                          visible: '=Math.abs(Number.parseFloat(items[props.pv_leistung].state.split(" ")[0])) > props.prop_tres'
+                      # Icon
+                      - component: oh-icon
+                        config:
+                          height: 110px
+                          icon: sma_pv_2
+                          style:
+                            margin-top: -20px
+
+                - component: f7-block
+                  config:
+                    style:
+                      display: flex
+                      justify-content: center
+                      margin: 0
+                      padding: 0
+                      width: 100%
+                  slots:
+                    default:
+                      - component: f7-row
+                        config:
+                          preserveAspectRatio: xMidYMid slice
+                          style:
+                            height: auto
+                            width: auto
+                          tag: svg
+                          viewBox: 0 0 100 100
+                          xmlns: http://www.w3.org/2000/svg
+                        slots:
+                          default:
+                            # Solar to battery animation
+                            - component: f7-row
+                              config:
+                                d: M60 -5 v10 c0 30 10 35 30 35 h20
+                                fill: none
+                                id: path1
+                                stroke: rgba(100, 150, 200, 0.8)
+                                stroke-width: 2
+                                tag: path
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) < -props.prop_tres) ? true : false'
+                            - component: f7-row
+                              config:
+                                fill: rgba(100, 150, 200, 0.8)
+                                r: 6
+                                style:
+                                  stroke-width: 4
+                                tag: circle
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) < -props.prop_tres) ? true : false'
+                              slots:
+                                default:
+                                  - component: f7-row
+                                    config:
+                                      calcMode: linear
+                                      dur: 4s
+                                      repeatCount: indefinite
+                                      tag: animateMotion
+                                    slots:
+                                      default:
+                                        - component: f7-row
+                                          config:
+                                            tag: mpath
+                                            xlink:href: "#path1"
+
+                            # Solar to grid animation
+                            - component: f7-row
+                              config:
+                                d: M40 -5 v10 c0 40 -10 35 -30 35 h-20
+                                fill: none
+                                id: path2
+                                stroke: rgba(100, 150, 200, 0.8)
+                                stroke-width: 2
+                                tag: path
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) < -props.prop_tres) ? true : false'
+                            - component: f7-row
+                              config:
+                                fill: rgba(100, 150, 200, 0.8)
+                                r: 6
+                                strokeWidth: 10
+                                tag: circle
+                                vectorEffect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) < -props.prop_tres) ? true : false'
+                              slots:
+                                default:
+                                  - component: f7-row
+                                    config:
+                                      calcMode: linear
+                                      dur: 4s
+                                      repeatCount: indefinite
+                                      tag: animateMotion
+                                    slots:
+                                      default:
+                                        - component: f7-row
+                                          config:
+                                            tag: mpath
+                                            xlink:href: "#path2"
+                            # Solar to house
+                            - component: f7-row
+                              config:
+                                d: M50, 0 v100
+                                fill: none
+                                id: path3
+                                stroke: rgba(100, 150, 200, 0.8)
+                                stroke-width: 2
+                                tag: path
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.pv_leistung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                            - component: f7-row
+                              config:
+                                fill: rgba(100, 150, 200, 0.8)
+                                r: 6
+                                strokeWidth: 10
+                                tag: circle
+                                vectorEffect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.pv_leistung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                              slots:
+                                default:
+                                  - component: f7-row
+                                    config:
+                                      calcMode: linear
+                                      dur: 4s
+                                      repeatCount: indefinite
+                                      tag: animateMotion
+                                    slots:
+                                      default:
+                                        - component: f7-row
+                                          config:
+                                            tag: mpath
+                                            xlink:href: "#path3"
+
+                            # Grid to house animation
+                            - component: f7-row
+                              config:
+                                d: M-5 50 l10 0 c40 0 35 10 35 50 l 0 20
+                                fill: none
+                                id: path4
+                                stroke: rgba(100, 150, 200, 0.8)
+                                stroke-width: 2
+                                tag: path
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                            - component: f7-row
+                              config:
+                                fill: rgba(100, 150, 200, 0.8)
+                                r: 6
+                                strokeWidth: 10
+                                tag: circle
+                                vectorEffect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                              slots:
+                                default:
+                                  - component: f7-row
+                                    config:
+                                      calcMode: linear
+                                      dur: 4s
+                                      repeatCount: indefinite
+                                      tag: animateMotion
+                                    slots:
+                                      default:
+                                        - component: f7-row
+                                          config:
+                                            tag: mpath
+                                            xlink:href: "#path4"
+
+                            # Battery to house animation
+                            - component: f7-row
+                              config:
+                                d: M 105 50 l -10 0 c -40 0 -35 10 -35 50 l 0 20
+                                fill: none
+                                id: path5
+                                stroke: rgba(100, 150, 200, 0.8)
+                                stroke-width: 2
+                                tag: path
+                                vector-effect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                            - component: f7-row
+                              config:
+                                fill: rgba(100, 150, 200, 0.8)
+                                r: 6
+                                strokeWidth: 10
+                                tag: circle
+                                vectorEffect: non-scaling-stroke
+                                visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) > props.prop_tres) ? true : false'
+                              slots:
+                                default:
+                                  - component: f7-row
+                                    config:
+                                      calcMode: linear
+                                      dur: 4s
+                                      repeatCount: indefinite
+                                      tag: animateMotion
+                                    slots:
+                                      default:
+                                        - component: f7-row
+                                          config:
+                                            tag: mpath
+                                            xlink:href: "#path5"
+
+                # Energy consumption icon + value
+                - component: f7-block
+                  config:
+                    style:
+                      align-items: center
+                      display: flex
+                      flex-direction: column
+                      height: 110px
+                      justify-content: center
+                      margin-top: -10px
+                      width: 110px
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          color: orange
+                          height: 70px
+                          icon: sma_house_2
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: bold
+                            margin-top: 0px
+                            text-align: center
+                            width: 150px
+                          text: =items[props.gesamtverbrauch].displayState
+
+          # Battery %icon - battery - value
+          - component: f7-col
+            config:
+              style:
+                align-items: center
+                display: flex
+                flex-direction: row
+            slots:
+              default:
+                - component: f7-block
+                  config:
+                    style:
+                      align-items: center
+                      display: flex
+                      flex-direction: column
+                      height: 110px
+                      justify-content: center
+                      margin-top: -40px
+                      width: 110px
+                  slots:
+                    # 3 battery icons 10 - 50 - 100
+                    default:
+                      - component: oh-link
+                        config:
+                          iconColor: red
+                          iconF7: battery_0
+                          iconSize: 33px
+                          style:
+                            font-size: 20px
+                            font-weight: bold
+                            white-space: nowrap
+                          text: =items[props.batterylevel].state
+                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) < 10) ? true : false'
+                      - component: oh-link
+                        config:
+                          iconColor: orange
+                          iconF7: battery_25
+                          iconSize: 33px
+                          style:
+                            font-size: 20px
+                            font-weight: bold
+                            white-space: nowrap
+                          text: =items[props.batterylevel].state
+                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) >= 10 && Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) < 50) ? true : false'
+                      - component: oh-link
+                        config:
+                          iconColor: green
+                          iconF7: battery_100
+                          iconSize: 33px
+                          style:
+                            font-size: 20px
+                            font-weight: bold
+                            white-space: nowrap
+                          text: =items[props.batterylevel].state
+                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) >= 50) ? true : false'
+
+                      - component: oh-icon
+                        config:
+                          height: 110px
+                          icon: sma_battery_2
+                          style:
+                            margin-top: -20px
+                      - component: Label
+                        config:
+                          style:
+                            color: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) > 0) ? "red" : "green"'
+                            font-size: 20px
+                            font-weight: bold
+                            margin-top: -10px
+                            text-align: center
+                            white-space: nowrap
+                            width: 150px
+                          text: = items[props.batterieleistung].displayState
+                          visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) !== 0) ? true : false'

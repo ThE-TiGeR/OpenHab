@@ -1,0 +1,506 @@
+uid: widget_NetAtmo_v3
+tags: []
+props:
+  parameters:
+    - description: Set Location
+      label: Location
+      name: location
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Outside
+      label: item
+      name: locOutside
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Rain
+      label: item
+      name: locRain
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Wind
+      label: item
+      name: locWind
+      required: false
+      type: TEXT
+    - description: Set Sensor Name - Room 1 (Main Station)
+      label: Location
+      name: locRoom1
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Room 1 (Main Station)
+      label: item
+      name: Room_1
+      required: false
+      type: TEXT
+    - description: Set Sensor Name - Room 2
+      label: Location
+      name: locRoom2
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Room 2
+      label: item
+      name: Room_2
+      required: false
+      type: TEXT
+    - description: Set CO2 Color
+      label: CO2 Color
+      name: ColorCO2
+      required: false
+      type: TEXT
+    - description: Set CO2 Threshold Value
+      label: CO2 Threshold Value
+      name: ThresholdCO2
+      required: false
+    - description: Set CO2 Threshold Color
+      label: CO2 Threshold Color
+      name: ThresholdColorCO2
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 1, 2022, 6:16:58 PM
+component: f7-card
+config:
+  class:
+    - align-items-center
+  style:
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: var(--f7-card-expandable-box-shadow)
+  title: =props.location
+slots:
+  default:
+    - component: f7-card-content
+      slots:
+        default:
+          # Outside
+          # Headline
+          - component: Label
+            config:
+              style:
+                color: lightblue
+                font-size: 20px
+                font-weight: 500
+                margin-bottom: 10px
+              text: Outside
+          # Row 1 (Temp, Wind, Rain)
+          - component: f7-row
+            slots:
+              default:
+                # Temperatur
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                      - align-items-flex-center
+                    style:
+                      flex-wrap: nowrap
+                      width: inherit
+                  slots:
+                    default:
+                      # Large transparent thermometer
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: thermometer
+                          size: 30
+                          style:
+                            position: absolute
+                            z-index: 0
+                            opacity: 30%
+                      # Outside temperature Value
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: 500
+                            line-height: 30px
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                          text: "=items[props.locOutside + '_Aussentemperatur'].state"
+                      # Min/Max temperature value
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 12px
+                            font-weight: 230
+                            line-height: 20px
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                          text: "='(' + items[props.locOutside + '_MinTemp'].state.split(' ')[0] + '/' + items[props.locOutside + '_MaxTemp'].state.split(' ')[0] + ')'"
+                                
+                # Wind
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                      - align-items-start
+                    style:
+                      flex-wrap: nowrap
+                      width: inherit
+                  slots:
+                    default:
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: wind
+                          size: 30
+                          style:
+                            position: absolute
+                            z-index: 0
+                            opacity: 30%
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: 500
+                            line-height: 30px
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                          text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_Windgeschwindigkeit'].displayState"
+                      - component: f7-row
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                color: blue
+                                f7: flag
+                                size: 16
+                                style:
+                                  margin-right: 2px
+                                  margin-top: 3px
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 12px
+                                  font-weight: 230
+                                  line-height: 20px
+                                  overflow: hidden
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                                text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_GustStrength'].displayState"
+                      - component: f7-row
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                color: blue
+                                f7: location
+                                size: 16
+                                style:
+                                  margin-right: 2px
+                                  margin-top: 3px
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 12px
+                                  font-weight: 230
+                                  line-height: 20px
+                                  overflow: hidden
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                                text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_Windrichtung'].state"
+                # Rain
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                      - align-items-flex-start
+                    style:
+                      flex-wrap: nowrap
+                      width: inherit
+                  slots:
+                    default:
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: cloud_rain
+                          size: 30
+                          style:
+                            position: absolute
+                            z-index: 0
+                            opacity: 30%
+                      - component: f7-row
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 20px
+                                  font-weight: 500
+                                  line-height: 30px
+                                  overflow: hidden
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_RainIntensity'].state"
+                      - component: f7-row
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                position: right
+                                z-index: 0
+                                color: blue
+                                f7: arrow_counterclockwise
+                                size: 17
+                            - component: Label
+                              config:
+                                style:
+                                  color: rgba(33,150,243,1)
+                                  font-size: 6px
+                                  font-weight: 600
+                                  line-height: 21px
+                                  margin-left: -10px
+                                  margin-top: 0.15em
+                                  z-index: 1
+                                text: 1
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 12px
+                                  font-weight: 230
+                                  line-height: 20px
+                                  margin-left: 10px
+                                  overflow: hidden
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_Rain1h'].state"
+                      - component: f7-row
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                color: blue
+                                f7: arrow_counterclockwise
+                                size: 17
+                                style:
+                                  margin-right: 1px
+                                  margin-top: 1px
+                            - component: Label
+                              config:
+                                style:
+                                  color: rgba(33,150,243,1)
+                                  font-size: 6px
+                                  font-weight: 600
+                                  line-height: 21px
+                                  margin-left: -14px
+                                  margin-top: 0.15em
+                                text: 24
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 12px
+                                  font-weight: 230
+                                  line-height: 20px
+                                  margin-left: 10px
+                                  overflow: hidden
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_Rain24h'].state"
+          # Row 2 (Humidity, Pressure)
+          - component: f7-row
+            config:
+              style:
+                margin-top: 10px
+            slots:
+              default:
+                # Luftfeuchte
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                      - align-items-center
+                    style:
+                      flex-wrap: nowrap
+                      width: inherit
+                  slots:
+                    default:
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: drop
+                          size: 30
+                          style:
+                            position: absolute
+                            z-index: 0
+                            opacity: 30%
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: 500
+                            line-height: 30px
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                          text: "=items[((props.locOutside === undefined) ? '' : props.locOutside) + '_Luftfeuchtigkeit'].state"
+                # Luftdruck
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                      - align-items-center
+                    style:
+                      flex-wrap: nowrap
+                      width: inherit
+                  slots:
+                    default:
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: gauge
+                          size: 30
+                          style:
+                            position: absolute
+                            z-index: 0
+                            opacity: 30%
+                      - component: Label
+                        config:
+                          style:
+                            font-size: 20px
+                            font-weight: 500
+                            line-height: 30px
+                            overflow: hidden
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                          text: "=items[((props.Room_1 === undefined) ? '' : props.Room_1) + '_Luftdruck'].state"
+          
+          # Inside
+          # Headline
+          - component: Label
+            config:
+              style:
+                color: lightblue
+                font-size: 20px
+                font-weight: 500
+                margin-top: 20px
+                margin-bottom: 10px
+              text: Inside
+          - component: f7-row
+            slots:
+              default:
+                # Icon column
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                  slots:
+                    default:
+                      - component: Label
+                        config:
+                          style:
+                            color: rgba(33,150,243,1)
+                            fontWeight: 400
+                            fontSize: 11px
+                          text: Room
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: thermometer
+                          size: 24
+                          style:
+                            margin-bottom: 16px
+                      - component: f7-icon
+                        config:
+                          color: blue
+                          f7: drop
+                          size: 24
+                      - component: Label
+                        config:
+                          style:
+                            color: rgba(33,150,243,1)
+                            fontWeight: 500
+                          text: CO2
+                # Room 1      
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                  slots:
+                    default:
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 11px
+                            fontWeight: 400
+                          text: = props.locRoom1
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[props.Room_1 + '_Innentemperatur'].state"
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 12px
+                            fontWeight: 250
+                          text: "=items[props.Room_1 + '_MinTemp'].state.split(' ')[0] + '/' + items[props.Room_1 + '_MaxTemp'].state.split(' ')[0]"
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[props.Room_1 + '_Luftfeuchtigkeit'].state"
+                      - component: Label
+                        config:
+                          style:
+                            color: '=(Number.parseInt(items[props.Room_1 + "_CO2"].state) > props.ThresholdCO2) ? props.ThresholdColorCO2 : props.ColorCO2'
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[props.Room_1 + '_CO2'].state"
+                # Room 2      
+                - component: f7-col
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-column
+                  slots:
+                    default:
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 11px
+                            fontWeight: 400
+                          text: = props.locRoom2
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_Innentemperatur'].state"
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 12px
+                            fontWeight: 250
+                          text: "=items[props.Room_2 + '_MinTemp'].state.split(' ')[0] + '/' + items[props.Room_2 + '_MaxTemp'].state.split(' ')[0]"
+                      - component: Label
+                        config:
+                          style:
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_Luftfeuchtigkeit'].state"
+                      - component: oh-button
+                        config:
+                          action: analyzer
+                          actionAnalyzerItems: =[props.Room_2 + '_Luftfeuchtigkeit']
+                          style:
+                            color: '=(Number.parseInt(items[props.Room_2 + "_CO2"].state) > props.ThresholdCO2) ? props.ThresholdColorCO2 : props.ColorCO2'
+                            fontSize: 16px
+                            fontWeight: 500
+                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_CO2'].state"
+
