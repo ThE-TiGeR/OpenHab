@@ -91,50 +91,11 @@ slots:
             slots:
               default:
                 # Temperatur
-                - component: f7-col
+                - component: widget:tcsystem_netatmo_outdoor
                   config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                      - align-items-flex-center
-                    style:
-                      flex-wrap: nowrap
-                      width: inherit
-                  slots:
-                    default:
-                      # Large transparent thermometer
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: thermometer
-                          size: 30
-                          style:
-                            position: absolute
-                            z-index: 0
-                            opacity: 30%
-                      # Outside temperature Value
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 20px
-                            font-weight: 500
-                            line-height: 30px
-                            overflow: hidden
-                            text-overflow: ellipsis
-                            white-space: nowrap
-                          text: "=items[props.locOutside + '_Aussentemperatur'].state"
-                      # Min/Max temperature value
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 12px
-                            font-weight: 230
-                            line-height: 20px
-                            overflow: hidden
-                            text-overflow: ellipsis
-                            white-space: nowrap
-                          text: "='(' + items[props.locOutside + '_MinTemp'].state.split(' ')[0] + '/' + items[props.locOutside + '_MaxTemp'].state.split(' ')[0] + ')'"
-                                
+                    _mainSensorName: =props.Room_1
+                    _outdoorSensorName: =props.locOutside
+
                 # Wind
                 - component: f7-col
                   config:
@@ -306,75 +267,6 @@ slots:
                                   text-overflow: ellipsis
                                   white-space: nowrap
                                 text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_Rain24h'].state"
-          # Row 2 (Humidity, Pressure)
-          - component: f7-row
-            config:
-              style:
-                margin-top: 10px
-            slots:
-              default:
-                # Luftfeuchte
-                - component: f7-col
-                  config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                      - align-items-center
-                    style:
-                      flex-wrap: nowrap
-                      width: inherit
-                  slots:
-                    default:
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: drop
-                          size: 30
-                          style:
-                            position: absolute
-                            z-index: 0
-                            opacity: 30%
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 20px
-                            font-weight: 500
-                            line-height: 30px
-                            overflow: hidden
-                            text-overflow: ellipsis
-                            white-space: nowrap
-                          text: "=items[((props.locOutside === undefined) ? '' : props.locOutside) + '_Luftfeuchtigkeit'].state"
-                # Luftdruck
-                - component: f7-col
-                  config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                      - align-items-center
-                    style:
-                      flex-wrap: nowrap
-                      width: inherit
-                  slots:
-                    default:
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: gauge
-                          size: 30
-                          style:
-                            position: absolute
-                            z-index: 0
-                            opacity: 30%
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 20px
-                            font-weight: 500
-                            line-height: 30px
-                            overflow: hidden
-                            text-overflow: ellipsis
-                            white-space: nowrap
-                          text: "=items[((props.Room_1 === undefined) ? '' : props.Room_1) + '_Luftdruck'].state"
           
           # Inside
           # Headline
@@ -390,40 +282,7 @@ slots:
           - component: f7-row
             slots:
               default:
-                # Icon column
-                - component: f7-col
-                  config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                  slots:
-                    default:
-                      - component: Label
-                        config:
-                          style:
-                            color: rgba(33,150,243,1)
-                            fontWeight: 400
-                            fontSize: 11px
-                          text: Room
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: thermometer
-                          size: 24
-                          style:
-                            margin-bottom: 16px
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: drop
-                          size: 24
-                      - component: Label
-                        config:
-                          style:
-                            color: rgba(33,150,243,1)
-                            fontWeight: 500
-                          text: CO2
-                # Room 1      
+                # Room 2    
                 - component: widget:tcsystem_netatmo_room
                   config:
                     _roomName: Wohnzimmer

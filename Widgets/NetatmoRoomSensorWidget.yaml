@@ -28,6 +28,7 @@ props:
       name: _co2Treshhold
       required: true
   parameterGroups: []
+
 component: f7-col
 config:
   class:
@@ -44,17 +45,35 @@ slots:
         text: = props._roomName
 
     # Innentemparatur
-    - component: oh-link
-      config:
-        class:
-          - justify-content-left
-        action: analyzer
-        actionAnalyzerItems: =[props._sensorName + '_Innentemperatur']
-        style:
-          color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
-          fontSize: 16px
-          fontWeight: 500
-        text: "=items[props._sensorName + '_Innentemperatur'].state"
+    - component: f7-col
+      class:
+        - display-flex
+        - flex-direction-column
+      slots:
+        default:
+        - component: f7-icon
+          config:
+            color: blue
+            f7: thermometer
+            size: 30
+            style:
+              position: absolute
+              z-index: 0
+              opacity: 30%
+        - component: oh-link
+          config:
+            class:
+              - justify-content-left
+            action: analyzer
+            actionAnalyzerItems: =[props._sensorName + '_Innentemperatur']
+            style:
+              color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              fontSize: 30px
+              fontWeight: 500
+              z-index: 1
+              line-height: 30px
+            text: "=items[props._sensorName + '_Innentemperatur'].state"
+
     # Innentemparatur min max
     - component: Label
       config:
@@ -64,17 +83,34 @@ slots:
         text: "=items[props._sensorName + '_MinTemp'].state.split(' ')[0] + '/' + items[props._sensorName + '_MaxTemp'].state.split(' ')[0]"
 
     # Luftfeuchte
-    - component: oh-link
-      config:
-        class:
-          - justify-content-left
-        action: analyzer
-        actionAnalyzerItems: =[props._sensorName + '_Luftfeuchtigkeit']
-        style:
-          color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
-          fontSize: 16px
-          fontWeight: 500
-        text: "=items[props._sensorName + '_Luftfeuchtigkeit'].state"
+    - component: f7-col
+      class:
+        - display-flex
+        - flex-direction-column
+      slots:
+        default:
+        - component: f7-icon
+          config:
+            color: blue
+            f7: drop
+            size: 24
+            style:
+              position: absolute
+              z-index: 0
+              opacity: 30%
+        - component: oh-link
+          config:
+            class:
+              - justify-content-left
+            action: analyzer
+            actionAnalyzerItems: =[props._sensorName + '_Luftfeuchtigkeit']
+            style:
+              color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              fontSize: 16px
+              fontWeight: 500
+              line-height: 16px
+              z-index: 1
+            text: "=items[props._sensorName + '_Luftfeuchtigkeit'].state"
 
     # CO2
     - component: oh-link
