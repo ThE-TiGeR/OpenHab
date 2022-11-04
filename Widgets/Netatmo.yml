@@ -424,83 +424,19 @@ slots:
                             fontWeight: 500
                           text: CO2
                 # Room 1      
-                - component: f7-col
+                - component: widget:tcsystem_netatmo_room
                   config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                  slots:
-                    default:
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 11px
-                            fontWeight: 400
-                          text: = props.locRoom1
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[props.Room_1 + '_Innentemperatur'].state"
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 12px
-                            fontWeight: 250
-                          text: "=items[props.Room_1 + '_MinTemp'].state.split(' ')[0] + '/' + items[props.Room_1 + '_MaxTemp'].state.split(' ')[0]"
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[props.Room_1 + '_Luftfeuchtigkeit'].state"
-                      - component: Label
-                        config:
-                          style:
-                            color: '=(Number.parseInt(items[props.Room_1 + "_CO2"].state) > props.ThresholdCO2) ? props.ThresholdColorCO2 : props.ColorCO2'
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[props.Room_1 + '_CO2'].state"
-                # Room 2      
-                - component: f7-col
+                    _roomName: Wohnzimmer
+                    _sensorName: =props.Room_1
+                    _colorCO2Normal: =props.ColorCO2
+                    _colorCO2High: =props.ThresholdColorCO2
+                    _co2Treshhold: =props.ThresholdCO2                          
+                # Room 1      
+                - component: widget:tcsystem_netatmo_room
                   config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                  slots:
-                    default:
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 11px
-                            fontWeight: 400
-                          text: = props.locRoom2
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_Innentemperatur'].state"
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 12px
-                            fontWeight: 250
-                          text: "=items[props.Room_2 + '_MinTemp'].state.split(' ')[0] + '/' + items[props.Room_2 + '_MaxTemp'].state.split(' ')[0]"
-                      - component: Label
-                        config:
-                          style:
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_Luftfeuchtigkeit'].state"
-                      - component: oh-button
-                        config:
-                          action: analyzer
-                          actionAnalyzerItems: =[props.Room_2 + '_Luftfeuchtigkeit']
-                          style:
-                            color: '=(Number.parseInt(items[props.Room_2 + "_CO2"].state) > props.ThresholdCO2) ? props.ThresholdColorCO2 : props.ColorCO2'
-                            fontSize: 16px
-                            fontWeight: 500
-                          text: "=items[((props.Room_2 === undefined) ? '' : props.Room_2) + '_CO2'].state"
+                    _roomName: Terasse
+                    _sensorName: =props.Room_2
+                    _colorCO2Normal: =props.ColorCO2
+                    _colorCO2High: =props.ThresholdColorCO2
+                    _co2Treshhold: =props.ThresholdCO2                          
 

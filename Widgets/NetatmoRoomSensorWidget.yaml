@@ -1,0 +1,80 @@
+uid: tcsystem_netatmo_room
+tags: []
+props:
+  parameters:
+    - description: Room Name
+      label: Room
+      name: _roomName
+      required: true
+      type: TEXT
+    - context: item
+      description: Item Sensor
+      label: Item
+      name: _sensorName
+      required: true
+      type: TEXT
+    - description: Set CO2 Color Normal
+      label: CO2 Color
+      name: _colorCO2Normal
+      required: true
+      type: TEXT
+    - description: Set CO2 Color High
+      label: CO2 Threshold Color
+      name: _colorCO2High
+      required: true
+      type: TEXT
+    - description: Set CO2 Threshold Value
+      label: CO2 Threshold Value
+      name: _co2Treshhold
+      required: true
+  parameterGroups: []
+component: f7-col
+config:
+  class:
+    - display-flex
+    - flex-direction-column
+slots:
+  default:
+    # Name
+    - component: Label
+      config:
+        style:
+          fontSize: 11px
+          fontWeight: 400
+        text: = props._roomName
+    # Innentemparatur
+    - component: Label
+      config:
+        style:
+          fontSize: 16px
+          fontWeight: 500
+        text: "=items[props._sensorName + '_Innentemperatur'].state"
+    # Innentemparatur min max
+    - component: Label
+      config:
+        style:
+          fontSize: 12px
+          fontWeight: 250
+        text: "=items[props._sensorName + '_MinTemp'].state.split(' ')[0] + '/' + items[props._sensorName + '_MaxTemp'].state.split(' ')[0]"
+
+    # Luftfeuchte
+    - component: Label
+      config:
+        style:
+          fontSize: 16px
+          fontWeight: 500
+        text: "=items[props._sensorName + '_Luftfeuchtigkeit'].state"
+
+    # CO2
+    - component: oh-link
+      config:
+        class:
+          - justify-content-left
+        action: analyzer
+        actionAnalyzerItems: =[props._sensorName + '_CO2']
+        style:
+          color: '=(Number.parseInt(items[props._sensorName + "_CO2"].state) > props._co2Treshhold) ? props._colorCO2High : props._colorCO2Normal'
+          fontSize: 16px
+          fontWeight: 500
+        text: "=items[props._sensorName + '_CO2'].state"
+
