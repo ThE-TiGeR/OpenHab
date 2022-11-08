@@ -1,0 +1,126 @@
+uid: tcsystem_netatmo_rain
+tags: []
+props:
+  parameters:
+    - context: item
+      description: Item Sensor
+      label: item
+      name: _sensorName
+      required: false
+      type: TEXT
+  parameterGroups: []
+
+# Rain
+component: f7-col
+config:
+  class:
+    - display-flex
+    - flex-direction-column
+    - align-items-center
+slots:
+  default:
+    # Name
+    - component: Label
+      config:
+        style:
+          color: lightblue
+          font-size: 20px
+          font-weight: 500
+          margin-bottom: 10px
+        text: Rain
+
+    - component: f7-col
+      class:
+        - display-flex
+        - flex-direction-column
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              color: blue
+              f7: cloud_rain
+              size: 30
+              style:
+                position: absolute
+                z-index: 0
+                opacity: 30%
+          - component: f7-row
+            slots:
+              default:
+                - component: Label
+                  config:
+                    style:
+                      font-size: 30px
+                      font-weight: 500
+                      line-height: 30px
+                      overflow: hidden
+                      text-overflow: ellipsis
+                      white-space: nowrap
+                    text: "=items[props._sensorName + '_RainIntensity'].state"
+
+    - component: f7-row
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              position: right
+              z-index: 0
+              color: blue
+              f7: arrow_counterclockwise
+              size: 17
+          - component: Label
+            config:
+              style:
+                color: rgba(33,150,243,1)
+                font-size: 6px
+                font-weight: 600
+                line-height: 21px
+                margin-left: -10px
+                margin-top: 0.15em
+                z-index: 1
+              text: 1
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                font-weight: 230
+                line-height: 20px
+                margin-left: 10px
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+              text: "=items[props._sensorName + '_Rain1h'].state"
+
+    - component: f7-row
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              color: blue
+              f7: arrow_counterclockwise
+              size: 17
+              style:
+                margin-right: 1px
+                margin-top: 1px
+          - component: Label
+            config:
+              style:
+                color: rgba(33,150,243,1)
+                font-size: 6px
+                font-weight: 600
+                line-height: 21px
+                margin-left: -14px
+                margin-top: 0.15em
+              text: 24
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                font-weight: 230
+                line-height: 20px
+                margin-left: 10px
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+              text: "=items[props._sensorName + '_Rain24h'].state"
+

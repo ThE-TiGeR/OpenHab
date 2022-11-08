@@ -34,14 +34,17 @@ config:
   class:
     - display-flex
     - flex-direction-column
+    - align-items-center
 slots:
   default:
     # Name
     - component: Label
       config:
         style:
-          fontSize: 11px
-          fontWeight: 400
+          color: lightblue
+          font-size: 20px
+          font-weight: 500
+          margin-bottom: 10px
         text: = props._roomName
 
     # Innentemparatur

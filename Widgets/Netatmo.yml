@@ -77,15 +77,6 @@ slots:
       slots:
         default:
           # Outside
-          # Headline
-          - component: Label
-            config:
-              style:
-                color: lightblue
-                font-size: 20px
-                font-weight: 500
-                margin-bottom: 10px
-              text: Outside
           # Row 1 (Temp, Wind, Rain)
           - component: f7-row
             slots:
@@ -95,191 +86,20 @@ slots:
                   config:
                     _mainSensorName: =props.Room_1
                     _outdoorSensorName: =props.locOutside
-
                 # Wind
-                - component: f7-col
+                - component: widget:tcsystem_netatmo_wind
                   config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                      - align-items-start
-                    style:
-                      flex-wrap: nowrap
-                      width: inherit
-                  slots:
-                    default:
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: wind
-                          size: 30
-                          style:
-                            position: absolute
-                            z-index: 0
-                            opacity: 30%
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 20px
-                            font-weight: 500
-                            line-height: 30px
-                            overflow: hidden
-                            text-overflow: ellipsis
-                            white-space: nowrap
-                          text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_Windgeschwindigkeit'].displayState"
-                      - component: f7-row
-                        slots:
-                          default:
-                            - component: f7-icon
-                              config:
-                                color: blue
-                                f7: flag
-                                size: 16
-                                style:
-                                  margin-right: 2px
-                                  margin-top: 3px
-                            - component: Label
-                              config:
-                                style:
-                                  font-size: 12px
-                                  font-weight: 230
-                                  line-height: 20px
-                                  overflow: hidden
-                                  text-overflow: ellipsis
-                                  white-space: nowrap
-                                text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_GustStrength'].displayState"
-                      - component: f7-row
-                        slots:
-                          default:
-                            - component: f7-icon
-                              config:
-                                color: blue
-                                f7: location
-                                size: 16
-                                style:
-                                  margin-right: 2px
-                                  margin-top: 3px
-                            - component: Label
-                              config:
-                                style:
-                                  font-size: 12px
-                                  font-weight: 230
-                                  line-height: 20px
-                                  overflow: hidden
-                                  text-overflow: ellipsis
-                                  white-space: nowrap
-                                text: "=items[((props.locWind === undefined) ? '' : props.locWind) + '_Windrichtung'].state"
+                    _sensorName: =props.locWind
                 # Rain
-                - component: f7-col
+                - component: widget:tcsystem_netatmo_rain
                   config:
-                    class:
-                      - display-flex
-                      - flex-direction-column
-                      - align-items-flex-start
-                    style:
-                      flex-wrap: nowrap
-                      width: inherit
-                  slots:
-                    default:
-                      - component: f7-icon
-                        config:
-                          color: blue
-                          f7: cloud_rain
-                          size: 30
-                          style:
-                            position: absolute
-                            z-index: 0
-                            opacity: 30%
-                      - component: f7-row
-                        slots:
-                          default:
-                            - component: Label
-                              config:
-                                style:
-                                  font-size: 20px
-                                  font-weight: 500
-                                  line-height: 30px
-                                  overflow: hidden
-                                  text-overflow: ellipsis
-                                  white-space: nowrap
-                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_RainIntensity'].state"
-                      - component: f7-row
-                        slots:
-                          default:
-                            - component: f7-icon
-                              config:
-                                position: right
-                                z-index: 0
-                                color: blue
-                                f7: arrow_counterclockwise
-                                size: 17
-                            - component: Label
-                              config:
-                                style:
-                                  color: rgba(33,150,243,1)
-                                  font-size: 6px
-                                  font-weight: 600
-                                  line-height: 21px
-                                  margin-left: -10px
-                                  margin-top: 0.15em
-                                  z-index: 1
-                                text: 1
-                            - component: Label
-                              config:
-                                style:
-                                  font-size: 12px
-                                  font-weight: 230
-                                  line-height: 20px
-                                  margin-left: 10px
-                                  overflow: hidden
-                                  text-overflow: ellipsis
-                                  white-space: nowrap
-                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_Rain1h'].state"
-                      - component: f7-row
-                        slots:
-                          default:
-                            - component: f7-icon
-                              config:
-                                color: blue
-                                f7: arrow_counterclockwise
-                                size: 17
-                                style:
-                                  margin-right: 1px
-                                  margin-top: 1px
-                            - component: Label
-                              config:
-                                style:
-                                  color: rgba(33,150,243,1)
-                                  font-size: 6px
-                                  font-weight: 600
-                                  line-height: 21px
-                                  margin-left: -14px
-                                  margin-top: 0.15em
-                                text: 24
-                            - component: Label
-                              config:
-                                style:
-                                  font-size: 12px
-                                  font-weight: 230
-                                  line-height: 20px
-                                  margin-left: 10px
-                                  overflow: hidden
-                                  text-overflow: ellipsis
-                                  white-space: nowrap
-                                text: "=items[((props.locRain === undefined) ? '' : props.locRain) + '_Rain24h'].state"
+                    _sensorName: =props.locRain
           
           # Inside
-          # Headline
-          - component: Label
+          - component: f7-row
             config:
               style:
-                color: lightblue
-                font-size: 20px
-                font-weight: 500
                 margin-top: 20px
-                margin-bottom: 10px
-              text: Inside
-          - component: f7-row
             slots:
               default:
                 # Room 2    
