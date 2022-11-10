@@ -22,6 +22,9 @@ config:
     - display-flex
     - flex-direction-column
     - align-items-center
+  style:
+    width: 140px
+
 slots:
   default:
     # Name
