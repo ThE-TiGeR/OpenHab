@@ -78,6 +78,9 @@ slots:
         default:
           # Outside
           - component: f7-row
+            config:
+              style:
+                margin-top: -20px
             slots:
               default:
                 # Outdoor Temperatur

@@ -37,6 +37,7 @@ config:
     - align-items-center
   style:
     width: 140px
+    margin-top: 10px
 
 slots:
   default:
@@ -47,7 +48,7 @@ slots:
           color: lightblue
           font-size: 20px
           font-weight: 500
-          margin-bottom: 10px
+          margin-bottom: 5px
         text: = props._roomName
 
     # Innentemparatur
@@ -81,9 +82,14 @@ slots:
             text: "=items[props._sensorName + '_Innentemperatur'].state"
 
     # Innentemparatur min max
-    - component: Label
+    - component: oh-link
       config:
+        class:
+          - justify-content-left
+        action: analyzer
+        actionAnalyzerItems: =[props._sensorName + '_MinTemp', props._sensorName + '_MaxTemp']
         style:
+          color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
           fontSize: 12px
           fontWeight: 250
         text: "=items[props._sensorName + '_MinTemp'].state.split(' ')[0] + '/' + items[props._sensorName + '_MaxTemp'].state.split(' ')[0]"

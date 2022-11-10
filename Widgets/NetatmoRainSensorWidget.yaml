@@ -19,6 +19,7 @@ config:
     - align-items-center
   style:
     width: 140px
+    margin-top: 10px
 
 slots:
   default:
@@ -29,7 +30,7 @@ slots:
           color: lightblue
           font-size: 20px
           font-weight: 500
-          margin-bottom: 10px
+          margin-bottom: 5px
         text: Rain
 
     - component: f7-col
@@ -47,19 +48,21 @@ slots:
                 position: absolute
                 z-index: 0
                 opacity: 30%
-          - component: f7-row
-            slots:
-              default:
-                - component: Label
-                  config:
-                    style:
-                      font-size: 30px
-                      font-weight: 500
-                      line-height: 30px
-                      overflow: hidden
-                      text-overflow: ellipsis
-                      white-space: nowrap
-                    text: "=items[props._sensorName + '_RainIntensity'].state"
+          - component: oh-link
+            config:
+              class:
+                - justify-content-left
+              action: analyzer
+              actionAnalyzerItems: =[props._sensorName + '_RainIntensity']
+              style:
+                color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+                font-size: 30px
+                font-weight: 500
+                line-height: 30px
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+              text: "=items[props._sensorName + '_RainIntensity'].state"
 
     - component: f7-row
       slots:
@@ -82,9 +85,14 @@ slots:
                 margin-top: 0.15em
                 z-index: 1
               text: 1
-          - component: Label
+          - component: oh-link
             config:
+              class:
+                - justify-content-left
+              action: analyzer
+              actionAnalyzerItems: =[props._sensorName + '_Rain1h']
               style:
+                color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
                 font-size: 12px
                 font-weight: 230
                 line-height: 20px
@@ -115,9 +123,14 @@ slots:
                 margin-left: -14px
                 margin-top: 0.15em
               text: 24
-          - component: Label
+          - component: oh-link
             config:
+              class:
+                - justify-content-left
+              action: analyzer
+              actionAnalyzerItems: =[props._sensorName + '_Rain24h']
               style:
+                color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
                 font-size: 12px
                 font-weight: 230
                 line-height: 20px

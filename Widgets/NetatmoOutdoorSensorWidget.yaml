@@ -24,6 +24,7 @@ config:
     - align-items-center
   style:
     width: 140px
+    margin-top: 10px
 
 slots:
   default:
@@ -34,7 +35,7 @@ slots:
           color: lightblue
           font-size: 20px
           font-weight: 500
-          margin-bottom: 10px
+          margin-bottom: 5px
         text: = 'Outdoor'
 
     - component: f7-col
@@ -68,9 +69,14 @@ slots:
               line-height: 30px
             text: "=items[props._outdoorSensorName + '_Aussentemperatur'].state"
     # Min/Max temperature value
-    - component: Label
+    - component: oh-link
       config:
+        class:
+          - justify-content-left
+        action: analyzer
+        actionAnalyzerItems: =[props._outdoorSensorName + '_MinTemp', props._outdoorSensorName + '_MaxTemp']
         style:
+          color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
           font-size: 12px
           font-weight: 230
         text: "=items[props._outdoorSensorName + '_MinTemp'].state.split(' ')[0] + '/' + items[props._outdoorSensorName + '_MaxTemp'].state.split(' ')[0]"
@@ -92,9 +98,14 @@ slots:
                 position: absolute
                 z-index: 0
                 opacity: 30%
-          - component: Label
+          - component: oh-link
             config:
+              class:
+                - justify-content-left
+              action: analyzer
+              actionAnalyzerItems: =[props._outdoorSensorName + '_Luftfeuchtigkeit']
               style:
+                color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
                 font-size: 16px
                 font-weight: 500
               text: "=items[props._outdoorSensorName + '_Luftfeuchtigkeit'].state"
@@ -116,9 +127,14 @@ slots:
                 position: absolute
                 z-index: 0
                 opacity: 30%
-          - component: Label
+          - component: oh-link
             config:
+              class:
+                - justify-content-left
+              action: analyzer
+              actionAnalyzerItems: =[props._mainSensorName + '_Luftdruck']
               style:
+                color: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
                 font-size: 16px
                 font-weight: 500
               text: "=items[props._mainSensorName + '_Luftdruck'].state"
