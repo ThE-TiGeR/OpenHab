@@ -43,10 +43,9 @@ config:
     - flex-direction-column
     - align-items-center
   style:
-    height: 450px
+    height: auto
     border-radius: var(--f7-card-expandable-border-radius)
     box-shadow: var(--f7-card-expandable-box-shadow)
-  title: Photovoltaik
 
 # All display items
 slots:
@@ -95,7 +94,6 @@ slots:
                             text-align: center
                             width: 150px
                           text: =items[props.netzeinspeisung].displayState
-                          visible: '=Math.abs(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0])) > props.prop_tres'
 
           # Solar value + icon + animation + Energy consumption
           - component: f7-col
@@ -129,7 +127,6 @@ slots:
                             text-align: center
                             width: 150px
                           text: =items[props.pv_leistung].displayState
-                          visible: '=Math.abs(Number.parseFloat(items[props.pv_leistung].state.split(" ")[0])) > props.prop_tres'
                       # Icon
                       - component: oh-icon
                         config:
@@ -357,7 +354,7 @@ slots:
                             width: 150px
                           text: =items[props.gesamtverbrauch].displayState
 
-          # Battery %icon - battery - value
+          # Battery
           - component: f7-col
             config:
               style:
@@ -366,68 +363,7 @@ slots:
                 flex-direction: row
             slots:
               default:
-                - component: f7-block
-                  config:
-                    style:
-                      align-items: center
-                      display: flex
-                      flex-direction: column
-                      height: 110px
-                      justify-content: center
-                      margin-top: -40px
-                      width: 110px
-                  slots:
-                    # 3 battery icons 10 - 50 - 100
-                    default:
-                      - component: oh-link
-                        config:
-                          iconColor: red
-                          iconF7: battery_0
-                          iconSize: 33px
-                          style:
-                            font-size: 20px
-                            font-weight: bold
-                            white-space: nowrap
-                          text: =items[props.batterylevel].state
-                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) < 10) ? true : false'
-                      - component: oh-link
-                        config:
-                          iconColor: orange
-                          iconF7: battery_25
-                          iconSize: 33px
-                          style:
-                            font-size: 20px
-                            font-weight: bold
-                            white-space: nowrap
-                          text: =items[props.batterylevel].state
-                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) >= 10 && Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) < 50) ? true : false'
-                      - component: oh-link
-                        config:
-                          iconColor: green
-                          iconF7: battery_100
-                          iconSize: 33px
-                          style:
-                            font-size: 20px
-                            font-weight: bold
-                            white-space: nowrap
-                          text: =items[props.batterylevel].state
-                          visible: '=(Number.parseFloat(items[props.batterylevel].state.split(" ")[0]) >= 50) ? true : false'
-
-                      - component: oh-icon
-                        config:
-                          height: 110px
-                          icon: sma_battery_2
-                          style:
-                            margin-top: -20px
-                      - component: Label
-                        config:
-                          style:
-                            color: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) > 0) ? "red" : "green"'
-                            font-size: 20px
-                            font-weight: bold
-                            margin-top: -10px
-                            text-align: center
-                            white-space: nowrap
-                            width: 150px
-                          text: = items[props.batterieleistung].displayState
-                          visible: '=(Number.parseFloat(items[props.batterieleistung].state.split(" ")[0]) !== 0) ? true : false'
+              - component: widget:tcsystem_pv_battery
+                config:
+                  _energy: =props.batterieleistung
+                  _level: =props.batterylevel

@@ -1,0 +1,88 @@
+uid: tcsystem_pv_battery
+tags: []
+props:
+  parameters:
+    - context: item
+      label: Batterie Energy
+      name: _energy
+      required: true
+      type: TEXT
+    - context: item
+      label: Battery Level
+      name: _level
+      required: true
+      type: TEXT
+
+# Battery %icon - battery - value
+component: f7-block
+config:
+  style:
+    align-items: center
+    display: flex
+    flex-direction: column
+slots:
+
+  # 3 battery icons 10 - 50 - 100
+  default:
+    - component: oh-link
+      config:
+        action: analyzer
+        actionAnalyzerItems: =[props._level]
+        iconColor: red
+        iconF7: battery_0
+        iconSize: 33px
+        style:
+          font-size: 20px
+          font-weight: bold
+          white-space: nowrap
+        text: =items[props._level].state
+        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) < 10) ? true : false'
+
+    - component: oh-link
+      config:
+        action: analyzer
+        actionAnalyzerItems: =[props._level]
+        iconColor: orange
+        iconF7: battery_25
+        iconSize: 33px
+        style:
+          font-size: 20px
+          font-weight: bold
+          white-space: nowrap
+        text: =items[props._level].state
+        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) >= 10 && Number.parseFloat(items[props._energy].state.split(" ")[0]) < 50) ? true : false'
+
+    - component: oh-link
+      config:
+        action: analyzer
+        actionAnalyzerItems: =[props._level]
+        iconColor: green
+        iconF7: battery_100
+        iconSize: 33px
+        style:
+          font-size: 20px
+          font-weight: bold
+          white-space: nowrap
+        text: =items[props._level].state as Number
+        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) >= 50) ? true : false'
+
+    - component: oh-icon
+      config:
+        height: 110px
+        icon: sma_battery_2
+        style:
+          margin-top: -20px
+
+    - component: oh-link
+      config:
+        action: analyzer
+        actionAnalyzerItems: =[props._energy]
+        style:
+          color: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) > 0.01) ? "red" : "green"'
+          font-size: 20px
+          font-weight: bold
+          margin-top: -10px
+          text-align: center
+          white-space: nowrap
+          width: 150px
+        text: = items[props._energy].displayState
