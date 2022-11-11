@@ -1,0 +1,33 @@
+uid: tcsystem_pv_house
+tags: [TCSysten, PV]
+props:
+  parameters:
+    - context: item
+      label: Energy
+      name: _energy
+      required: true
+      type: TEXT
+
+# Energy consumption icon + value
+component: f7-block
+config:
+  style:
+    align-items: center
+    display: flex
+    flex-direction: column
+slots:
+
+  default:
+    - component: oh-icon
+      config:
+        color: orange
+        height: 70px
+        icon: sma_house_2
+    - component: Label
+      config:
+        style:
+          font-size: 20px
+          font-weight: bold
+          text-align: center
+          width: 150px
+        text: =items[props._energy].displayState

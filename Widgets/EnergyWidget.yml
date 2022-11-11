@@ -1,5 +1,5 @@
 uid: SMA_widget
-tags: []
+tags: [TCSysten, PV]
 props:
   parameters:
     - context: item
@@ -105,7 +105,7 @@ slots:
                 flex-grow: 1
             slots:
               default:
-                # Value + icon
+                # Solar Value + icon
                 - component: f7-block
                   config:
                     style:
@@ -135,6 +135,7 @@ slots:
                           style:
                             margin-top: -20px
 
+                # Animations
                 - component: f7-block
                   config:
                     style:
@@ -224,6 +225,7 @@ slots:
                                           config:
                                             tag: mpath
                                             xlink:href: "#path2"
+
                             # Solar to house
                             - component: f7-row
                               config:
@@ -327,32 +329,20 @@ slots:
                                             xlink:href: "#path5"
 
                 # Energy consumption icon + value
-                - component: f7-block
+                - component: f7-col
                   config:
                     style:
                       align-items: center
                       display: flex
-                      flex-direction: column
-                      height: 110px
-                      justify-content: center
-                      margin-top: -10px
+                      flex-direction: row
+                      margin-top: -30px
+                      margin-left: -75px
                       width: 110px
                   slots:
                     default:
-                      - component: oh-icon
+                      - component: widget:tcsystem_pv_house
                         config:
-                          color: orange
-                          height: 70px
-                          icon: sma_house_2
-                      - component: Label
-                        config:
-                          style:
-                            font-size: 20px
-                            font-weight: bold
-                            margin-top: 0px
-                            text-align: center
-                            width: 150px
-                          text: =items[props.gesamtverbrauch].displayState
+                          _energy: = props.gesamtverbrauch
 
           # Battery
           - component: f7-col
@@ -361,6 +351,9 @@ slots:
                 align-items: center
                 display: flex
                 flex-direction: row
+                margin-top: -30px
+                margin-left: -40px
+                width: 110px
             slots:
               default:
               - component: widget:tcsystem_pv_battery
