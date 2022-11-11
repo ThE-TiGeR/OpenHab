@@ -1,5 +1,5 @@
 uid: widget_NetAtmo_v3
-tags: []
+tags: [TCSysten, PV]
 props:
   parameters:
     - description: Set Location

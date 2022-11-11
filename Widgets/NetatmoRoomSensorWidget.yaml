@@ -1,5 +1,5 @@
 uid: tcsystem_netatmo_room
-tags: []
+tags: [TCSysten, PV]
 props:
   parameters:
     - description: Room Name

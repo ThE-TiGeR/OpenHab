@@ -1,5 +1,5 @@
 uid: tcsystem_pv_battery
-tags: []
+tags: [TCSysten, PV]
 props:
   parameters:
     - context: item

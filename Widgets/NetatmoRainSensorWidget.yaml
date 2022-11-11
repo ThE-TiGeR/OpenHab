@@ -1,5 +1,5 @@
 uid: tcsystem_netatmo_rain
-tags: []
+tags: [TCSysten, PV]
 props:
   parameters:
     - context: item
