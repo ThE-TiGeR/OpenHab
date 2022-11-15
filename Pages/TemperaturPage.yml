@@ -1,0 +1,247 @@
+config:
+  label: Temperatur
+  sidebar: true
+  order: "1"
+blocks:
+  # Wohnzimmer
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        noBorder: true
+                        noShadow: true
+                        label: Wohnzimmer
+                        fontSize: 32px
+                        fontWeight: bold
+                        background: darkblue
+                        icon: iconify:mdi:living-room-outline
+        - component: oh-grid-row
+          slots:
+            default:
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - WeatherStation_Innentemperatur
+                        icon: f7:thermometer
+                        iconColor: lightblue
+                        item: WeatherStation_Innentemperatur
+                        trendItem: WeatherStation_Innentemperatur
+                        vertical: true
+                      slots: null
+                config: null
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - WeatherStation_Luftfeuchtigkeit
+                        icon: f7:drop
+                        iconColor: lightblue
+                        item: WeatherStation_Luftfeuchtigkeit
+                        trendItem: WeatherStation_Luftfeuchtigkeit
+                        vertical: true
+                config: null
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - WeatherStation_CO2
+                        icon: iconify:mdi:molecule-co2
+                        iconColor: lightblue
+                        item: WeatherStation_CO2
+                        trendItem: WeatherStation_CO2
+                        vertical: true
+          config: null
+  # Terasse
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        label: Terasse
+                        noBorder: true
+                        noShadow: true
+                        background: darkblue
+                        fontSize: 32px
+                        fontWeight: bold
+                        icon: iconify:icon-park-outline:terrace
+        - component: oh-grid-row
+          slots:
+            default:
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Terasse_Innentemperatur
+                        icon: f7:thermometer
+                        iconColor: lightblue
+                        item: Terasse_Innentemperatur
+                        trendItem: Terasse_Innentemperatur
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Terasse_Luftfeuchtigkeit
+                        icon: f7:drop
+                        iconColor: lightblue
+                        item: Terasse_Luftfeuchtigkeit
+                        trendItem: Terasse_Luftfeuchtigkeit
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Terasse_CO2
+                        icon: iconify:mdi:molecule-co2
+                        iconColor: lightblue
+                        item: Terasse_CO2
+                        trendItem: Terasse_CO2
+                        vertical: true
+  # Außen
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        label: Außen
+                        noBorder: true
+                        noShadow: true
+                        background: darkblue
+                        fontSize: 32px
+                        fontWeight: bold
+                        icon: iconify:mdi:outside-temperature
+        - component: oh-grid-row
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Aussen_Aussentemperatur
+                        icon: f7:thermometer
+                        iconColor: lightblue
+                        item: Aussen_Aussentemperatur
+                        trendItem: Aussen_Aussentemperatur
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Aussen_Luftfeuchtigkeit
+                        icon: f7:drop
+                        iconColor: lightblue
+                        item: Aussen_Luftfeuchtigkeit
+                        trendItem: Aussen_Luftfeuchtigkeit
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - WeatherStation_Luftdruck
+                        icon: f7:gauge
+                        iconColor: lightblue
+                        item: WeatherStation_Luftdruck
+                        trendItem: WeatherStation_Luftdruck
+                        vertical: true
+        - component: oh-grid-row
+          slots:
+            default:
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Windmesser_Windgeschwindigkeit
+                        icon: iconify:vscode-icons:file-type-windi
+                        iconColor: lightblue
+                        item: Windmesser_Windgeschwindigkeit
+                        trendItem: Windmesser_Windgeschwindigkeit
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Regensensor_RainIntensity
+                        icon: f7:cloud_rain
+                        iconColor: lightblue
+                        item: Regensensor_RainIntensity
+                        trendItem: Regensensor_RainIntensity
+                        vertical: true
+              - component: oh-grid-col
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - Regensensor_Rain24h
+                        icon: iconify:carbon:accumulation-rain
+                        iconColor: lightblue
+                        item: Regensensor_Rain24h
+                        trendItem: Regensensor_Rain24h
+                        vertical: true
+masonry: []
+grid: []
+canvas: []
