@@ -2,18 +2,21 @@ config:
   label: Temperatur
   sidebar: true
   order: "1"
+  style:
+    background: linear-gradient(to left,#101420 0%,#303038 100%)
+
 blocks:
   # Wohnzimmer
   - component: oh-block
     config: {}
     slots:
       default:
+        # Header
         - component: oh-grid-row
           config: {}
           slots:
             default:
               - component: oh-grid-col
-                config: {}
                 slots:
                   default:
                     - component: oh-label-card
@@ -23,14 +26,24 @@ blocks:
                         label: Wohnzimmer
                         fontSize: 32px
                         fontWeight: bold
-                        background: darkblue
+                        background: linear-gradient(to right,#101420 0%,#303038 100%)
                         icon: iconify:mdi:living-room-outline
+
+        # Values        
         - component: oh-grid-row
           slots:
             default:
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
+                    # Innentemparatur
                     - component: oh-label-card
                       config:
                         action: analyzer
@@ -41,11 +54,17 @@ blocks:
                         item: WeatherStation_Innentemperatur
                         trendItem: WeatherStation_Innentemperatur
                         vertical: true
-                      slots: null
-                config: null
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
+                    # Luftfeuchte
                     - component: oh-label-card
                       config:
                         action: analyzer
@@ -56,10 +75,17 @@ blocks:
                         item: WeatherStation_Luftfeuchtigkeit
                         trendItem: WeatherStation_Luftfeuchtigkeit
                         vertical: true
-                config: null
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
+                    # CO2
                     - component: oh-label-card
                       config:
                         action: analyzer
@@ -70,7 +96,7 @@ blocks:
                         item: WeatherStation_CO2
                         trendItem: WeatherStation_CO2
                         vertical: true
-          config: null
+
   # Terasse
   - component: oh-block
     config: {}
@@ -89,7 +115,7 @@ blocks:
                         label: Terasse
                         noBorder: true
                         noShadow: true
-                        background: darkblue
+                        background: linear-gradient(to right,#101420 0%,#303038 100%)
                         fontSize: 32px
                         fontWeight: bold
                         icon: iconify:icon-park-outline:terrace
@@ -97,6 +123,13 @@ blocks:
           slots:
             default:
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -110,6 +143,13 @@ blocks:
                         trendItem: Terasse_Innentemperatur
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -123,6 +163,13 @@ blocks:
                         trendItem: Terasse_Luftfeuchtigkeit
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -153,7 +200,7 @@ blocks:
                         label: Außen
                         noBorder: true
                         noShadow: true
-                        background: darkblue
+                        background: linear-gradient(to right,#101420 0%,#303038 100%)
                         fontSize: 32px
                         fontWeight: bold
                         icon: iconify:mdi:outside-temperature
@@ -161,7 +208,13 @@ blocks:
           slots:
             default:
               - component: oh-grid-col
-                config: {}
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -175,6 +228,13 @@ blocks:
                         trendItem: Aussen_Aussentemperatur
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -188,6 +248,13 @@ blocks:
                         trendItem: Aussen_Luftfeuchtigkeit
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -200,10 +267,14 @@ blocks:
                         item: WeatherStation_Luftdruck
                         trendItem: WeatherStation_Luftdruck
                         vertical: true
-        - component: oh-grid-row
-          slots:
-            default:
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -217,6 +288,13 @@ blocks:
                         trendItem: Windmesser_Windgeschwindigkeit
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
@@ -230,6 +308,13 @@ blocks:
                         trendItem: Regensensor_RainIntensity
                         vertical: true
               - component: oh-grid-col
+                config:
+                  medium: "50"
+                  small: "50"
+                  xsmall: "50"
+                  width: "50"
+                  large: "33"
+                  xlarge: "33"
                 slots:
                   default:
                     - component: oh-label-card
