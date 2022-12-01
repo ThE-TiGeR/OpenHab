@@ -1,7 +1,6 @@
 config:
-  label: Temperatur
-  sidebar: true
-  order: "1"
+  label: Temperatur Werte
+  sidebar: false  
   style:
     background: linear-gradient(to left,#101420 0%,#303038 100%)
 
@@ -54,6 +53,9 @@ blocks:
                         item: WeatherStation_Innentemperatur
                         trendItem: WeatherStation_Innentemperatur
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -75,6 +77,9 @@ blocks:
                         item: WeatherStation_Luftfeuchtigkeit
                         trendItem: WeatherStation_Luftfeuchtigkeit
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -119,6 +124,7 @@ blocks:
                         fontSize: 32px
                         fontWeight: bold
                         icon: iconify:icon-park-outline:terrace
+
         - component: oh-grid-row
           slots:
             default:
@@ -142,6 +148,9 @@ blocks:
                         item: Terasse_Innentemperatur
                         trendItem: Terasse_Innentemperatur
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -162,6 +171,9 @@ blocks:
                         item: Terasse_Luftfeuchtigkeit
                         trendItem: Terasse_Luftfeuchtigkeit
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -182,6 +194,7 @@ blocks:
                         item: Terasse_CO2
                         trendItem: Terasse_CO2
                         vertical: true
+
   # Außen
   - component: oh-block
     config: {}
@@ -227,6 +240,9 @@ blocks:
                         item: Aussen_Aussentemperatur
                         trendItem: Aussen_Aussentemperatur
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -247,6 +263,9 @@ blocks:
                         item: Aussen_Luftfeuchtigkeit
                         trendItem: Aussen_Luftfeuchtigkeit
                         vertical: true
+                        fontSize: 32px
+                        fontWeight: bold
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -267,6 +286,7 @@ blocks:
                         item: WeatherStation_Luftdruck
                         trendItem: WeatherStation_Luftdruck
                         vertical: true
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -287,6 +307,7 @@ blocks:
                         item: Windmesser_Windgeschwindigkeit
                         trendItem: Windmesser_Windgeschwindigkeit
                         vertical: true
+
               - component: oh-grid-col
                 config:
                   medium: "50"
@@ -307,6 +328,7 @@ blocks:
                         item: Regensensor_RainIntensity
                         trendItem: Regensensor_RainIntensity
                         vertical: true
+
               - component: oh-grid-col
                 config:
                   medium: "50"

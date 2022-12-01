@@ -1,0 +1,30 @@
+tabs:
+  - component: oh-tab
+    config:
+      icon: f7:squares_below_rectangle
+      page: page:page_8c5971d8e3
+      title: Werte
+    slots:
+      default: []
+  - component: oh-tab
+    config:
+      icon: f7:squares_below_rectangle
+      page: page:Temperatur_Analyse
+      title: Verlauf Heute
+    slots:
+      default: []
+  - component: oh-tab
+    config:
+      icon: f7:squares_below_rectangle
+      page: page:page_c98b81ee45
+      title: Verlauf Monat
+    slots:
+      default: []
+  - component: oh-tab
+    config:
+      title: Verlauf Jahr
+      icon: f7:squares_below_rectangle
+      page: page:page_6eb4f3be15
+      pageConfig: {}
+    slots:
+      default: []
