@@ -80,20 +80,9 @@ slots:
                       width: 110px
                   slots:
                     default:
-                      - component: oh-icon
+                      - component: widget:tcsystem_pv_grid
                         config:
-                          height: 110px
-                          icon: sma_grid_2
-                      - component: Label
-                        config:
-                          style:
-                            color: '=(Number.parseFloat(items[props.netzeinspeisung].state.split(" ")[0]) > props.prop_tres) ? "red" : "green"'
-                            font-size: 20px
-                            font-weight: bold
-                            margin-top: -10px
-                            text-align: center
-                            width: 150px
-                          text: =items[props.netzeinspeisung].displayState
+                          _energy: =props.netzeinspeisung
 
           # Solar value + icon + animation + Energy consumption
           - component: f7-col
@@ -112,28 +101,15 @@ slots:
                       align-items: center
                       display: flex
                       flex-direction: column
-                      height: 110px
+                      height: 95px
                       justify-content: center
                       margin-top: 0
                       width: 110px
                   slots:
                     default:
-                      # Value
-                      - component: Label
+                      - component: widget:tcsystem_pv_solar
                         config:
-                          style:
-                            font-size: 20px
-                            font-weight: bold
-                            text-align: center
-                            width: 150px
-                          text: =items[props.pv_leistung].displayState
-                      # Icon
-                      - component: oh-icon
-                        config:
-                          height: 110px
-                          icon: sma_pv_2
-                          style:
-                            margin-top: -20px
+                          _energy: = props.pv_leistung                    
 
                 # Animations
                 - component: f7-block

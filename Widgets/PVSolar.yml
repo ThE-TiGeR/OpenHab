@@ -1,4 +1,4 @@
-uid: tcsystem_pv_house
+uid: tcsystem_pv_solar
 tags: [TCSysten, PV]
 props:
   parameters:
@@ -18,11 +18,6 @@ config:
 slots:
 
   default:
-    - component: oh-icon
-      config:
-        height: 70px
-        icon: sma_house_2
-
     - component: oh-link
       config:
         action: analyzer
@@ -34,3 +29,10 @@ slots:
           white-space: nowrap
           width: 150px
         text: = items[props._energy].displayState
+
+    - component: oh-icon
+      config:
+        height: 110px
+        icon: sma_pv_2
+        style:
+          margin-top: -30px        
