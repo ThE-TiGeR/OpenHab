@@ -36,7 +36,7 @@ slots:
           font-weight: bold
           white-space: nowrap
         text: =items[props._level].state
-        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) < 10) ? true : false'
+        visible: '=(Number.parseFloat(items[props._level].state.split(" ")[0]) < 10) ? true : false'
 
     - component: oh-link
       config:
@@ -50,7 +50,7 @@ slots:
           font-weight: bold
           white-space: nowrap
         text: =items[props._level].state
-        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) >= 10 && Number.parseFloat(items[props._energy].state.split(" ")[0]) < 50) ? true : false'
+        visible: '=(Number.parseFloat(items[props._level].state.split(" ")[0]) >= 10 && Number.parseFloat(items[props._level].state.split(" ")[0]) < 50) ? true : false'
 
     - component: oh-link
       config:
@@ -63,8 +63,8 @@ slots:
           font-size: 20px
           font-weight: bold
           white-space: nowrap
-        text: =items[props._level].state as Number
-        visible: '=(Number.parseFloat(items[props._energy].state.split(" ")[0]) >= 50) ? true : false'
+        text: =items[props._level].state
+        visible: '=(Number.parseFloat(items[props._level].state.split(" ")[0]) >= 50) ? true : false'
 
     - component: oh-icon
       config:
