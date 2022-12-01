@@ -1,0 +1,144 @@
+config:
+  chartType: month
+  label: Temperatur (Monat)
+  order: ""
+  period: D
+  sidebar: false
+slots:
+  dataZoom:
+    - component: oh-chart-datazoom
+      config:
+        show: true
+        type: slider
+  grid:
+    - component: oh-chart-grid
+      config:
+        includeLabels: true
+  legend:
+    - component: oh-chart-legend
+      config:
+        bottom: 3
+        type: scroll
+  series:
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: date
+        gridIndex: 0
+        item: Aussen_Aussentemperatur
+        lineStyle:
+          width: 3
+        markLine:
+          data:
+            - type: average
+        markPoint:
+          data:
+            - name: min
+              type: min
+            - name: max
+              type: max
+        name: Außentemperatur
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: date
+        gridIndex: 0
+        item: Terasse_Innentemperatur
+        lineStyle:
+          width: 3
+        markLine:
+          data:
+            - type: average
+        markPoint:
+          data:
+            - name: min
+              type: min
+            - name: max
+              type: max
+        name: Terasse
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: date
+        gridIndex: 0
+        item: WeatherStation_Innentemperatur
+        lineStyle:
+          width: 3
+        markLine:
+          data:
+            - type: average
+        markPoint:
+          data:
+            - name: Min
+              type: min
+            - name: Max
+              type: max
+        name: Wohnzimmer
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: date
+        gridIndex: 0
+        item: WeatherStation_Innentemperatur
+        lineStyle:
+          opacity: 0.5
+          type: dotted
+        name: Wohnzimmer (Vormonat)
+        offsetAmount: 1
+        offsetUnit: month
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+  title:
+    - component: oh-chart-title
+      config:
+        show: true
+        text: Temperatur Analyse
+  toolbox:
+    - component: oh-chart-toolbox
+      config:
+        presetFeatures:
+          - dataView
+          - dataZoom
+          - magicType
+        show: true
+  tooltip:
+    - component: oh-chart-tooltip
+      config:
+        confine: true
+        orient: vertical
+        show: true
+  visualMap: []
+  xAxis:
+    - component: oh-category-axis
+      config:
+        axisPointer:
+          handle:
+            backgroundColor: blue
+            show: true
+          label:
+            backgroundColor: "#2196f3"
+            show: true
+          snap: true
+        categoryType: month
+        gridIndex: 0
+        monthFormat: default
+        weekdayFormat: default
+  yAxis:
+    - component: oh-value-axis
+      config:
+        gridIndex: 0
+        name: °C
