@@ -23,7 +23,7 @@ blocks:
                         noBorder: true
                         noShadow: true
                         label: Wohnzimmer
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
                         background: linear-gradient(to right,#101420 0%,#303038 100%)
                         icon: iconify:mdi:living-room-outline
@@ -34,10 +34,10 @@ blocks:
             default:
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -53,15 +53,15 @@ blocks:
                         item: WeatherStation_Innentemperatur
                         trendItem: WeatherStation_Innentemperatur
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -77,15 +77,15 @@ blocks:
                         item: WeatherStation_Luftfeuchtigkeit
                         trendItem: WeatherStation_Luftfeuchtigkeit
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -121,7 +121,7 @@ blocks:
                         noBorder: true
                         noShadow: true
                         background: linear-gradient(to right,#101420 0%,#303038 100%)
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
                         icon: iconify:icon-park-outline:terrace
 
@@ -130,10 +130,10 @@ blocks:
             default:
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -148,15 +148,15 @@ blocks:
                         item: Terasse_Innentemperatur
                         trendItem: Terasse_Innentemperatur
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -171,15 +171,15 @@ blocks:
                         item: Terasse_Luftfeuchtigkeit
                         trendItem: Terasse_Luftfeuchtigkeit
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -214,7 +214,7 @@ blocks:
                         noBorder: true
                         noShadow: true
                         background: linear-gradient(to right,#101420 0%,#303038 100%)
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
                         icon: iconify:mdi:outside-temperature
         - component: oh-grid-row
@@ -222,10 +222,10 @@ blocks:
             default:
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -240,15 +240,15 @@ blocks:
                         item: Aussen_Aussentemperatur
                         trendItem: Aussen_Aussentemperatur
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -263,15 +263,15 @@ blocks:
                         item: Aussen_Luftfeuchtigkeit
                         trendItem: Aussen_Luftfeuchtigkeit
                         vertical: true
-                        fontSize: 32px
+                        fontSize: 36px
                         fontWeight: bold
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -289,10 +289,10 @@ blocks:
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -310,10 +310,10 @@ blocks:
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
@@ -331,10 +331,10 @@ blocks:
 
               - component: oh-grid-col
                 config:
+                  xsmall: "100"
+                  small: "100"
                   medium: "50"
-                  small: "50"
-                  xsmall: "50"
-                  width: "50"
+                  width: "100"
                   large: "33"
                   xlarge: "33"
                 slots:
