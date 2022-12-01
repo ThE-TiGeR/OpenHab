@@ -1,5 +1,5 @@
 uid: tcsystem_netatmo_outdoor
-tags: [TCSysten, PV]
+tags: [TCSysten, Netatmo]
 props:
   parameters:
     - context: item

@@ -1,12 +1,12 @@
 uid: tcsystem_netatmo_wind
-tags: [TCSysten, PV]
+tags: [TCSysten, Netatmo]
 props:
   parameters:
     - context: item
       description: Item Sensor
       label: item
       name: _sensorName
-      required: false
+      required: true
       type: TEXT
   parameterGroups: []
 
