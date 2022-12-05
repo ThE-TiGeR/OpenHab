@@ -1,0 +1,130 @@
+config:
+  chartType: day
+  label: Stromverbrauch (Tag)
+slots:
+  dataZoom:
+    - component: oh-chart-datazoom
+      config:
+        show: true
+        type: slider
+  grid:
+    - component: oh-chart-grid
+      config: {}
+  legend:
+    - component: oh-chart-legend
+      config:
+        bottom: 3
+        type: scroll
+  series:
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: hour
+        gridIndex: 0
+        item: FroniusSymoInverter_ChargeDischargeofBattery
+        lineStyle:
+          width: 1
+        markLine:
+          data:
+            - type: average
+        name: Batterie
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0        
+
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: hour
+        gridIndex: 0
+        item: FroniusSymoInverter_CurrentSolarYield
+        lineStyle:
+          width: 1
+        markLine:
+          data:
+            - type: average
+        name: Solar
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: hour
+        gridIndex: 0
+        item: FroniusSymoInverter_GridPower
+        lineStyle:
+          width: 1
+        markLine:
+          data:
+            - type: average
+        name: Netz
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: hour
+        gridIndex: 0
+        item: Power_ConsumedSum
+        lineStyle:
+          width: 3
+        markLine:
+          data:
+            - type: average
+        markPoint:
+          data:
+            - name: Min
+              type: min
+            - name: Max
+              type: max
+        name: Gesamt Verbrauch
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+        
+
+  title:
+    - component: oh-chart-title
+      config:
+        show: true
+        text: Stromverbrauch (Heute)
+  toolbox:
+    - component: oh-chart-toolbox
+      config:
+        presetFeatures:
+          - dataView
+          - dataZoom
+          - magicType
+        show: true
+  tooltip:
+    - component: oh-chart-tooltip
+      config:
+        confine: true
+        orient: vertical
+        show: true
+  xAxis:
+    - component: oh-category-axis
+      config:
+        axisPointer:
+          handle:
+            show: true
+          label:
+            show: true
+          snap: true
+        categoryType: day
+        gridIndex: 0
+        monthFormat: default
+        weekdayFormat: default
+  yAxis:
+    - component: oh-value-axis
+      config:
+        gridIndex: 0
+        name: Watt
