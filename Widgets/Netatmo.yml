@@ -2,28 +2,23 @@ uid: tcsystem_netatmo
 tags: [TCSysten, Netatmo]
 props:
   parameters:
-    - description: Set Location
-      label: Location
-      name: location
-      required: false
-      type: TEXT
     - context: item
       description: Item Sensor Outside
       label: item
       name: locOutside
-      required: false
+      required: true
       type: TEXT
     - context: item
       description: Item Sensor Rain
       label: item
       name: locRain
-      required: false
+      required: true
       type: TEXT
     - context: item
       description: Item Sensor Wind
       label: item
       name: locWind
-      required: false
+      required: true
       type: TEXT
     - description: Set Sensor Name - Room 1 (Main Station)
       label: Location
@@ -43,6 +38,17 @@ props:
       type: TEXT
     - context: item
       description: Item Sensor Room 2
+      label: item
+      name: Room_2
+      required: false
+      type: TEXT
+    - description: Set Sensor Name - Room 3
+      label: Location
+      name: locRoom3
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Sensor Room 3
       label: item
       name: Room_2
       required: false
@@ -70,7 +76,6 @@ config:
   style:
     border-radius: var(--f7-card-expandable-border-radius)
     box-shadow: var(--f7-card-expandable-box-shadow)
-  title: =props.location
 slots:
   default:
     - component: f7-card-content
@@ -88,22 +93,6 @@ slots:
                   config:
                     _mainSensorName: =props.Room_1
                     _outdoorSensorName: =props.locOutside
-                # Wohnzimmer  
-                - component: widget:tcsystem_netatmo_room
-                  config:
-                    _roomName: Wohnzimmer
-                    _sensorName: =props.Room_1
-                    _colorCO2Normal: =props.ColorCO2
-                    _colorCO2High: =props.ThresholdColorCO2
-                    _co2Treshhold: =props.ThresholdCO2                          
-                # Terasse     
-                - component: widget:tcsystem_netatmo_room
-                  config:
-                    _roomName: Terasse
-                    _sensorName: =props.Room_2
-                    _colorCO2Normal: =props.ColorCO2
-                    _colorCO2High: =props.ThresholdColorCO2
-                    _co2Treshhold: =props.ThresholdCO2                          
                 # Wind
                 - component: widget:tcsystem_netatmo_wind
                   config:
@@ -112,4 +101,28 @@ slots:
                 - component: widget:tcsystem_netatmo_rain
                   config:
                     _sensorName: =props.locRain
+                # Wohnzimmer  
+                - component: widget:tcsystem_netatmo_room
+                  config:
+                    _roomName: =props.locRoom1
+                    _sensorName: =props.Room_1
+                    _colorCO2Normal: =props.ColorCO2
+                    _colorCO2High: =props.ThresholdColorCO2
+                    _co2Treshhold: =props.ThresholdCO2                          
+                # Schlafzimmer  
+                - component: widget:tcsystem_netatmo_room
+                  config:
+                    _roomName: =props.locRoom2
+                    _sensorName: =props.Room_2
+                    _colorCO2Normal: =props.ColorCO2
+                    _colorCO2High: =props.ThresholdColorCO2
+                    _co2Treshhold: =props.ThresholdCO2                          
+                # Terasse     
+                - component: widget:tcsystem_netatmo_room
+                  config:
+                    _roomName: =props.locRoom3
+                    _sensorName: =props.Room_3
+                    _colorCO2Normal: =props.ColorCO2
+                    _colorCO2High: =props.ThresholdColorCO2
+                    _co2Treshhold: =props.ThresholdCO2                          
 
