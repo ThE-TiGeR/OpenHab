@@ -19,6 +19,7 @@ slots:
       config:
         bottom: 3
         type: scroll
+        
   series:
     - component: oh-aggregate-series
       config:
@@ -42,6 +43,7 @@ slots:
         type: line
         xAxisIndex: 0
         yAxisIndex: 0
+
     - component: oh-aggregate-series
       config:
         aggregationFunction: average
@@ -64,6 +66,30 @@ slots:
         type: line
         xAxisIndex: 0
         yAxisIndex: 0
+
+    - component: oh-aggregate-series
+      config:
+        aggregationFunction: average
+        dimension1: hour
+        gridIndex: 0
+        item: SchlafzimmerTemperaturSensor_Innentemperatur
+        lineStyle:
+          width: 3
+        markLine:
+          data:
+            - type: average
+        markPoint:
+          data:
+            - name: Min
+              type: min
+            - name: Max
+              type: max
+        name: Schlafzimmer
+        smooth: true
+        type: line
+        xAxisIndex: 0
+        yAxisIndex: 0
+
     - component: oh-aggregate-series
       config:
         aggregationFunction: average
@@ -81,7 +107,7 @@ slots:
               type: min
             - name: Max
               type: max
-        name: Wohnzimmer (Heute)
+        name: Wohnzimmer
         smooth: true
         type: line
         xAxisIndex: 0
