@@ -24,9 +24,6 @@ slots:
         item: FroniusSymoInverter_ChargeDischargeofBattery
         lineStyle:
           width: 1
-        markLine:
-          data:
-            - type: average
         name: Batterie
         smooth: true
         type: line
