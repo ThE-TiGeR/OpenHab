@@ -1,0 +1,39 @@
+configuration: {}
+triggers:
+  # Absenken ausschalten um 13 Uhr Montag und Mittwoch
+  - id: "1"
+    configuration:
+      cronExpression: 0 0 13 ? * MON,WED *
+    type: timer.GenericCronTrigger
+  # Absenken ausschalten um 9 Uhr Dienstags
+  - id: "2"
+    configuration:
+      cronExpression: 0 0 9 ? * TUE *
+    type: timer.GenericCronTrigger
+  # Absenken ausschalten um 12 Uhr Donnerstags
+  - id: "3"
+    configuration:
+      cronExpression: 0 0 12 ? * THU *
+    type: timer.GenericCronTrigger
+conditions:
+  # Nur wenn wir nicht auf urlaub sind
+  - inputs: {}
+    id: "5"
+    configuration:
+      itemName: Urlaub
+      state: OFF
+      operator: =
+    type: core.ItemStateCondition
+  # Nur wenn heute keine ferien
+  - inputs: {}
+    id: "6"
+    configuration:
+      offset: 0
+    type: ephemeris.NotHolidayCondition
+actions:
+  - inputs: {}
+    id: "4"
+    configuration:
+      command: OFF
+      itemName: Heizung_Absenkung
+    type: core.ItemCommandAction

@@ -1,0 +1,21 @@
+configuration: {}
+triggers:
+  # Absenken um 23 Uhr Sonntag - Mittwoch
+  - id: "1"
+    configuration:
+      cronExpression: 0 0 23 ? * SUN,MON,TUE,WED *
+    type: timer.GenericCronTrigger
+conditions:
+  # Morgen nicht Ferien
+  - inputs: {}
+    id: "3"
+    configuration:
+      offset: 1
+    type: ephemeris.NotHolidayCondition
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      command: ON
+      itemName: Heizung_Absenkung
+    type: core.ItemCommandAction

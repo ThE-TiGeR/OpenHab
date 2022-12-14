@@ -1,0 +1,21 @@
+configuration: {}
+triggers:
+  # Täglich um 0:00 Uhr
+  - id: "1"
+    configuration:
+      time: 00:00
+    type: timer.TimeOfDayTrigger
+conditions: []
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      itemName: WeihnachtsbeleuchtungInnen
+      command: OFF
+    type: core.ItemCommandAction
+  - inputs: {}
+    id: "3"
+    configuration:
+      itemName: WeihnachtsbeleuchtungAussen
+      command: OFF
+    type: core.ItemCommandAction

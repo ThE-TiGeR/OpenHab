@@ -1,0 +1,38 @@
+configuration: {}
+triggers:
+  # Wenn sich innentemperatur ändert
+  - id: "1"
+    configuration:
+      itemName: WeatherStation_Innentemperatur
+    type: core.ItemStateChangeTrigger
+conditions:
+  # Zwischen 10 - 13 Uhr
+  - inputs: {}
+    id: "3"
+    configuration:
+      startTime: 10:00
+      endTime: 13:00
+    type: core.TimeOfDayCondition
+  # Temperatur ist unter 21 Grad
+  - inputs: {}
+    id: "4"
+    configuration:
+      itemName: WeatherStation_Innentemperatur
+      state: "21"
+      operator: <
+    type: core.ItemStateCondition
+  # Wir sind nicht auf Urlaub
+  - inputs: {}
+    id: "5"
+    configuration:
+      itemName: Urlaub
+      state: OFF
+      operator: =
+    type: core.ItemStateCondition
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      command: OFF
+      itemName: Heizung_Absenkung
+    type: core.ItemCommandAction

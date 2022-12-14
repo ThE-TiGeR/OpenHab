@@ -1,0 +1,26 @@
+configuration: {}
+triggers:
+  # Abends um 21 Uhr
+  - id: "1"
+    configuration:
+      time: 21:00
+    type: timer.TimeOfDayTrigger
+  # 10 Uhr Montag - Donnerstag
+  - id: "3"
+    configuration:
+      cronExpression: 0 0 10 ? * MON,TUE,WED,THU *
+    type: timer.GenericCronTrigger
+conditions:
+  # Wenn heute keine ferien
+  - inputs: {}
+    id: "4"
+    configuration:
+      offset: 0
+    type: ephemeris.NotHolidayCondition
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      command: ON
+      itemName: Warmwasse_NichtAufheizen
+    type: core.ItemCommandAction

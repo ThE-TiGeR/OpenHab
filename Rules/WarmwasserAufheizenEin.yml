@@ -1,0 +1,28 @@
+configuration: {}
+triggers:
+  # Morgens um 5:00
+  - id: "1"
+    configuration:
+      time: 05:00
+    type: timer.TimeOfDayTrigger
+  # 15:00 Uhr Montag - Donnerstag
+  - id: "4"
+    configuration:
+      cronExpression: 0 0 15 ? * MON,TUE,WED,THU *
+    type: timer.GenericCronTrigger
+conditions:
+  # Wenn nicht auf Urlaub
+  - inputs: {}
+    id: "3"
+    configuration:
+      itemName: Urlaub
+      state: OFF
+      operator: =
+    type: core.ItemStateCondition
+actions:
+  - inputs: {}
+    id: "2"
+    configuration:
+      command: OFF
+      itemName: Warmwasse_NichtAufheizen
+    type: core.ItemCommandAction
