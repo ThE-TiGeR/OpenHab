@@ -1,0 +1,26 @@
+config:
+  label: Heizung
+  order: "3"
+  sidebar: true
+  style:
+    background: linear-gradient(to left,#101420 0%,#303038 100%)
+  visibleTo:
+    - role:administrator
+    - role:user
+blocks: []
+masonry:
+  - component: oh-masonry
+    slots:
+      default:
+        - component: oh-toggle-card
+          config:
+            color: red
+            item: Heizung_Absenkung
+            title: Heizung absenken
+        - component: oh-toggle-card
+          config:
+            color: blue
+            item: Warmwasse_NichtAufheizen
+            title: Warmwasser nicht aufheizen
+grid: []
+canvas: []

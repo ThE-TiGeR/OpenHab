@@ -1,0 +1,40 @@
+config:
+  allowChatInputTo:
+    - role:administrator
+    - role:user
+  displayModelCardsTo:
+    - role:administrator
+    - role:user
+  label: Home Page
+equipment:
+  - component: oh-equipment-tab
+    config:
+      equipmentNesting: accordion
+      equipmentPromoteSingle: false
+    slots: {}
+locations:
+  - component: oh-locations-tab
+    config:
+      cardOrder:
+        - Indoor
+        - Vorzimmer
+        - Wohnzimmer
+        - Schlafzimmer
+        - Keller
+        - Outdoor
+        - Aussen_Terasse
+        - Urlaub
+        - FerienZuHause
+      equipmentNesting: accordion
+      equipmentPromoteSingle: true
+      equipmentPromotedLabel:
+        - equipment
+      equipmentPromoteMain: true
+    slots:
+      FerienZuHause:
+        - component: oh-location-card
+          config: {}
+properties:
+  - component: oh-properties-tab
+    config: {}
+    slots: {}

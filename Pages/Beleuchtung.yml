@@ -1,0 +1,96 @@
+config:
+  label: Beleuchtung
+  order: "2"
+  sidebar: true
+  style:
+    background: linear-gradient(to left,#101420 0%,#303038 100%)
+  visibleTo:
+    - role:administrator
+    - role:user
+blocks:
+  - component: oh-block
+    config:
+      title: Innen
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: WohnzimmerStehlampe_PowerState
+                        title: Wohnzimmer Stehlampe
+  - component: oh-block
+    config:
+      title: Weihnachtsbeleuchtung
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: WeihnachtsbeleuchtungAussen
+                        title: Außen
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: WeihnachtsbeleuchtungInnen
+                        title: Innen
+  - component: oh-block
+    config:
+      title: Terasse
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: TerasseLampe01_PowerState
+                        title: Lampe 1
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: TerasseLampe02_PowerState
+                        title: Lampe 2
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: TerasseLampe03_PowerState
+                        title: Lampe 3
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: TerasseLampe04_PowerState
+                        title: Lampe 4
+masonry: null
+grid: []
+canvas: []

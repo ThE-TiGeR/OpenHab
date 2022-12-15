@@ -1,0 +1,59 @@
+config:
+  label: Overview
+  style:
+    background: linear-gradient(to left,#101420 0%,#303038 100%)
+
+blocks:
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  large: "50"
+                  medium: "50"
+                  small: "100"
+                  width: "100"
+                  xlarge: "33"
+                  xsmall: "100"
+                slots:
+                  default:
+                    - component: widget:tcsystem_netatmo
+                      config:
+                        ColorCO2: teal
+                        Room_1: WeatherStation
+                        Room_2: SchlafzimmerTemperaturSensor
+                        Room_3: Terasse
+                        ThresholdCO2: "1000"
+                        ThresholdColorCO2: maroon
+                        locOutside: Aussen
+                        locRain: Regensensor
+                        locRoom1: Wohnzimmer
+                        locRoom2: Schlafzimmer
+                        locRoom3: Terasse
+                        locWind: Windmesser
+              - component: oh-grid-col
+                config:
+                  large: "50"
+                  medium: "50"
+                  small: "100"
+                  width: "100"
+                  xlarge: "33"
+                  xsmall: "100"
+                slots:
+                  default:
+                    - component: widget:tcsystem_pv_system
+                      config:
+                        batterieleistung: FroniusSymoInverter_ChargeDischargeofBattery
+                        batterylevel: FroniusSymoInverter_StateofChargeInverter1
+                        gesamtverbrauch: FroniusSymoInverter_LoadPower
+                        netzbezug: FroniusSymoInverter_GridPower
+                        netzeinspeisung: FroniusSymoInverter_GridPower
+                        prop_tres: 10
+                        pv_leistung: FroniusSymoInverter_CurrentSolarYield
+masonry: []
+grid: null
+canvas: null

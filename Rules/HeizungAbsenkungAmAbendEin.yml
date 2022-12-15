@@ -12,6 +12,14 @@ conditions:
     configuration:
       offset: 1
     type: ephemeris.NotHolidayCondition
+  # Wenn wir nicht die ganze zeit zu Hause sind
+  - inputs: {}
+    id: "4"
+    configuration:
+      itemName: FerienZuHause
+      state: OFF
+      operator: =
+    type: core.ItemStateCondition    
 actions:
   - inputs: {}
     id: "2"

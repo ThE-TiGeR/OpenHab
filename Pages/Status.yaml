@@ -1,0 +1,28 @@
+config:
+  label: Status
+  order: "1"
+  sidebar: true
+  style:
+    background: linear-gradient(to left,#101420 0%,#303038 100%)
+  visibleTo:
+    - role:administrator
+    - role:user
+blocks: []
+masonry:
+  - component: oh-masonry
+    slots:
+      default:
+        - component: oh-toggle-card
+          config:
+            color: blue
+            item: Urlaub
+            outline: true
+            title: Sind auf Urlaub
+        - component: oh-toggle-card
+          config:
+            color: green
+            item: FerienZuHause
+            outline: true
+            title: Ferien zu Hause
+grid: []
+canvas: []
